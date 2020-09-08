@@ -23,21 +23,57 @@ Ammount
 """
 
 
-weather_cdmx %>%
-  html_node() %>%
-  html_text() %>%
-  as.numeric()
-
-weather_cdmx %>%
-  html_node() %>%
-  html_text() %>%
-  as.numeric()
-
-weather_cdmx %>%
-  html_nodes(xpath ='')  %>%
-  html_text() %>%
-  as.numeric()
+time<-weather_cdmx %>%
+        html_node() %>%
+        html_text() %>%
+        as.numeric()
 
 
+temp<-weather_cdmx %>%
+        html_node() %>%
+        html_text() %>%
+        as.numeric()
 
 
+weather<-weather_cdmx %>%
+            html_node() %>%
+            html_text() %>%
+            as.character()
+
+
+feels_like<-weather_cdmx %>%
+              html_node() %>%
+              html_text() %>%
+              as.numeric()
+
+
+
+wind<-weather_cdmx %>%
+          html_node() %>%
+          html_text()window()
+          as.numeric()
+
+          
+humidity<-weather_cdmx %>%
+            html_node() %>%
+            html_text() %>%
+            as.numeric()
+
+
+chance_rain<-weather_cdmx %>%
+                html_node() %>%
+                html_text() %>%
+                as.numeric()
+
+ammount<-weather_cdmx %>%
+            html_node() %>%
+            html_text() %>%
+            as.numeric()
+
+
+
+"""
+Juntar todas las variables en una sola base de datos y guardar resultado en csv
+
+"""
+          

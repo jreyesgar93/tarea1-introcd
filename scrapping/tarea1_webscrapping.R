@@ -6,7 +6,7 @@ library(magritrr )
 Carga de la pagina que contiene los datos
 """
 weather_cdmx <- read_html("https://www.timeanddate.com/weather/mexico/mexico-city/hourly")
-
+x<-1
 
 """
 Datos a extraer: 

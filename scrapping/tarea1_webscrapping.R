@@ -1,24 +1,43 @@
 library(rvest)
-lego_movie <- read_html("http://www.imdb.com/title/tt1490017/")
+library(magritrr )
 
-lego_movie %>%
-  html_node("strong span") %>%
+
+"""
+Carga de la pagina que contiene los datos
+"""
+weather_cdmx <- read_html("https://www.timeanddate.com/weather/mexico/mexico-city/hourly")
+
+
+"""
+Datos a extraer: 
+
+Time
+Temp
+Weather
+Feels Like
+wind
+Humidity
+Chance rain 
+Ammount
+
+"""
+
+
+weather_cdmx %>%
+  html_node() %>%
   html_text() %>%
   as.numeric()
 
-lego_movie %>%
-  html_node(".ratingValue span") %>%
+weather_cdmx %>%
+  html_node() %>%
   html_text() %>%
   as.numeric()
 
-lego_movie %>%
-  html_nodes(xpath = '//*[@id="title-overview-widget"]/div[1]/div[2]/div/div[1]/div[1]/div[1]/strong/span')  %>%
+weather_cdmx %>%
+  html_nodes(xpath ='')  %>%
   html_text() %>%
   as.numeric()
 
-lego_movie %>%
-  html_nodes(".primary_photo+ td a") %>%
-  html_text() %>%
-  trimws()
+
 
 

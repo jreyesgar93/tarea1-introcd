@@ -1,5 +1,5 @@
 library(rvest)
-library(magritrr )
+library(magritrr)
 
 
 '''
@@ -7,7 +7,6 @@ Carga de la pagina que contiene los datos
 
 '''
 weather_cdmx <- read_html("https://www.timeanddate.com/weather/mexico/mexico-city/hourly")
-x<-1
 
 
 '''
@@ -73,15 +72,25 @@ wind<-weather_scrapping(weather_cdmx,5)
                 
 humidity<-weather_scrapping(weather_cdmx,7)
 
+
 chance_rain<-weather_cdmx %>%
-                html_node() %>%
+                html_nodes(xpath = '//td[(((count(preceding-sibling::*) + 1) = 9) and parent::*)]') %>%
                 html_text() %>%
-                as.numeric()
+                sub("%", "", .) %>%
+                as.numeric() %>% 
+                divide_by(100)
+
+# otra forma de hacer lo mismo
+chance_rain2<-weather_cdmx %>%
+  html_node("td:nth-child(9)") %>%
+  html_text()
+as.numeric(sub("%","",chance_rain2))/100
+
 
 ammount<-weather_cdmx %>%
-            html_node() %>%
+            html_nodes(xpath = '//td[(((count(preceding-sibling::*) + 1) = 10) and parent::*)]') %>%
             html_text() %>%
-            as.numeric()
+            as.character()
 
 '''
 Juntar todas las variables en una sola base de datos y guardar resultado en csv

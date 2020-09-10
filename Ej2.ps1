@@ -329,3 +329,7 @@ cat aux_evalL4.txt | more
 
 join aux_evalL4.txt catalogoL4b.txt --header -1 44 -2 1 -t '|' -a 1 > aux_ticevalL4.txt
 cat aux_ticevalL4.txt| more
+
+# Haz un guión que obtenga cual es esta variable y crea un nuevo archivo con esta columna.
+
+cut -d'|' -f86-86 aux_data.txt > aux_caravan.txt

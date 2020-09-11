@@ -79,72 +79,70 @@ cat nombre_col_entrena.txt ticdata2000.txt | tr '\t' '|' > ticdata2000_h.txt
 sed -n '208,248p;249q'  TicDataDescr.txt | cut -f1-3 --output-delimiter='|' > catalogo1.txt
 
 # Nos quedamos solo con dos columnas y nombramos el primer y segundo campos
-cut -d '|' -f 2-3  catalogo1.txt |  header -a 'MOSTYPE|MOSTYPECAT'  > catalogo1b.txt
-cat catalogo1b.txt
+cut -d '|' -f 2-3  catalogo1.txt |  header -a 'MOSTYPE|MOSTYPECAT'  > catalogoL0.txt
+cat catalogoL0.txt
 
 # Guardamos los nombres de las columnas del archivo de datos
 head -n 1 ticdata2000_h.txt > aux1.txt
 
 # Ordenamos el archivo de datos por la primera columna, especificando que lo haga numéricamente
-cat ticdata2000_h.txt | header -d | sort -t '|' -k 1n > aux2.txt
+cat ticdata2000_h.txt | header -d | sort -t '|' -k 1n > auxL0.txt
 
 #Le pegamos los nombres de la columna 1 y guardamos
-cat aux1.txt aux2.txt > aux_data.txt
-cat aux_data.txt | more
+cat aux1.txt auxL0.txt > aux_dataL0.txt
+cat aux_dataL0.txt | more
 
 # Hacemos lo mismo con el catálogo L0
-head -n 1 catalogo1b.txt > aux1b.txt
-cat catalogo1b.txt | header -d | sort -t '|' -k 1n > aux2b.txt
-cat aux1b.txt aux2b.txt > aux_cat.txt
-cat aux_cat.txt | more
+head -n 1 catalogoL0.txt > aux1b.txt
+cat catalogoL0.txt | header -d | sort -t '|' -k 1n > aux2b.txt
+cat aux1b.txt aux2b.txt > aux_catL0.txt
+cat aux_catL0.txt | more
 
 # Los unimos
 
-join aux_data.txt aux_cat.txt --header -1 1 -2 1 -t '|' -a 1 > aux_ticdata1.txt
-cat aux_ticdata1.txt| more
+join aux_dataL0.txt aux_catL0.txt --header -1 1 -2 1 -t '|' -a 1 > aux_ticdataL0.txt
+cat aux_ticdataL0.txt| more
 
 #Guardamos los nombres de las columnas incluyendo la nueva
-head -n 1 aux_ticdata1.txt > aux10.txt
+head -n 1 aux_ticdataL0.txt > aux10.txt
 
 # Hacer lo mismo para las otras variables categóricas
 # Catálogo L1
 # Extraer las líneas 252 al 262
 
 sed -n '252,262p;263q'  TicDataDescr.txt | cut -f1-3 | egrep "[1-6]+\s[1-9][0]+\-[1-9][0]+\s[a-z]" | 
-	cut -d' ' -f1-3 --output-delimiter='|' | sed 's/|years/ years/g' > catalogo2.txt
+	cut -d' ' -f1-3 --output-delimiter='|' | sed 's/|years/ years/g' > catalogoL1.txt
 
 # nombramos el primer y segundo campos
-cut -d '|' -f1-2  catalogo2.txt |  header -a 'MGEMLEEF|MGEMLEEFCAT'  > catalogo2b.txt
-cat catalogo2b.txt
+cut -d '|' -f1-2  catalogoL1.txt |  header -a 'MGEMLEEF|MGEMLEEFCAT'  > catalogoL1b.txt
+cat catalogoL1b.txt
 
 # Ordenamos el archivo de datos (que ya contiene la columna del catálogo L0) por la cuarta columna, 
 #especificando que lo haga numéricamente
-cat aux_ticdata1.txt | header -d | sort -t '|' -k 4n > aux2b.txt
+cat aux_ticdataL0.txt | header -d | sort -t '|' -k 4n > auxL1.txt
 
 #Le pegamos los nombres de las columnas y guardamos
-cat aux10.txt aux2b.txt > aux_datab.txt
-cat aux_datab.txt | more
+cat aux10.txt auxL1.txt > aux_dataL1.txt
+cat aux_dataL1.txt | more
 
 # Hacemos lo mismo con el catálogo L1
-head -n 1 catalogo2b.txt > aux1bb.txt
-cat catalogo2b.txt | header -d | sort -t '|' -k 1n > aux2bb.txt
-cat aux1bb.txt aux2bb.txt > aux_cat1.txt
-cat aux_cat1.txt | more
+head -n 1 catalogoL1b.txt > aux1bb.txt
+cat catalogoL1b.txt | header -d | sort -t '|' -k 1n > aux2bb.txt
+cat aux1bb.txt aux2bb.txt > aux_catL1.txt
+cat aux_catL1.txt | more
 
 # Los unimos
 
-join aux_datab.txt aux_cat1.txt --header -1 4 -2 1 -t '|' -a 1 > aux_ticdata2.txt
-cat aux_ticdata2.txt| more
+join aux_dataL1.txt aux_catL1.txt --header -1 4 -2 1 -t '|' -a 1 > aux_ticdataL1.txt
+cat aux_ticdataL1.txt| more
 
 #Guardamos los nombres de las columnas incluyendo la nueva
-head -n 1 aux_ticdata2.txt > aux11.txt
+head -n 1 aux_ticdataL1.txt > aux11.txt
 
 # Catálogo L2
 # Extraer las líneas 268 al 286
 
-sed -n '268,286p;287q'  TicDataDescr.txt | cut -f1-3 | egrep "[1-9]*[0]{0,4}+\s[A-Za-z]" | 
-	cut -d' ' -f1-2 --output-delimiter='|' | sed 's/|h/ H/gi' | sed 's/|G/ G/gi' | sed 's/e|/e /gi' |
-	| sed 's/r|/r /gi' | sed 's/|W/ W/gi' | sed 's/g|/g /gi' | sed 's/d|/d /gi' | sed 's/|U/ U/gi' > catalogoL2.txt
+sed -n '268,286p;287q'  TicDataDescr.txt | cut -f1-3 | egrep "[1-9]*[0]{0,4}+\s[A-Za-z]" | cut -d' ' -f1-2 --output-delimiter='|' | sed 's/|h/ H/gi' | sed 's/|G/ G/gi' | sed 's/e|/e /gi' | sed 's/r|/r /gi' | sed 's/|W/ W/gi' | sed 's/g|/g /gi' | sed 's/d|/d /gi' | sed 's/|U/ U/gi' > catalogoL2.txt
 
 # nombramos el primer y segundo campos
 cut -d '|' -f1-2  catalogoL2.txt |  header -a 'MOSHOOFD|MOSHOOFDCAT'  > catalogoL2b.txt
@@ -152,7 +150,7 @@ cat catalogoL2b.txt
 
 # Ordenamos el archivo de datos (que ya contiene las columnas de los catálogos L0 y L1) por la quinta columna, 
 # especificando que lo haga numéricamente
-cat aux_ticdata2.txt | header -d | sort -t '|' -k 5n > auxL2.txt
+cat aux_ticdataL1.txt | header -d | sort -t '|' -k 5n > auxL2.txt
 
 #Le pegamos los nombres de las columnas y guardamos
 cat aux11.txt auxL2.txt > aux_dataL2.txt
@@ -171,8 +169,7 @@ head -n 1 aux_ticdataL2.txt > aux12.txt
 # Catálogo L3
 # Extraer las líneas 292 al 310
 
-sed -n '292,310p;311q'  TicDataDescr.txt | cut -f1-2 | egrep "[0-9]" | 
-	cut -d' ' -f1-4 --output-delimiter='|' | sed 's/|-|/ - /g' > catalogoL3.txt
+sed -n '292,310p;311q'  TicDataDescr.txt | cut -f1-2 | egrep "[0-9]" | cut -d' ' -f1-4 --output-delimiter='|' | sed 's/|-|/ - /g' > catalogoL3.txt
 
 # nombramos el primer y segundo campos
 cut -d '|' -f1-2  catalogoL3.txt |  header -a 'MGODRK|MGODRKCAT'  > catalogoL3b.txt
@@ -200,9 +197,8 @@ head -n 1 aux_ticdataL3.txt > aux13.txt
 # Extraer las líneas 316 al 334
 
 sed -n '316,334p;335q'  TicDataDescr.txt | cut -f1-2 > auxpasoL4.txt
-egrep --binary-files=text "[60]" auxpasoL4.txt > auxpasoL4b.txt
-cut -d' ' -f1-5 --output-delimiter='|' auxpasoL4b.txt | sed 's/f|/f /g' | sed 's/|-|/-/g' | sed 's/0|/0-/g' | 
-	sed 's/|//g' | sed 's/f/|f/g' | sed 's/-|/|/g'> catalogoL4.txt
+egrep --binary-files=text "[a-z]" auxpasoL4.txt > auxpasoL4b.txt
+cut -d' ' -f1-5 --output-delimiter='|' auxpasoL4b.txt | sed 's/f|/f /g' | sed 's/|-|/-/g' | sed 's/0|/0-/g' | sed 's/|//g' | sed 's/f/|f/g' | sed 's/-|/|/g'> catalogoL4.txt
 	
 # nombramos el primer y segundo campos
 cut -d '|' -f1-2  catalogoL4.txt |  header -a 'PWAPART|PWAPARTCAT'  > catalogoL4b.txt
@@ -236,15 +232,15 @@ cat nombre_col_entrena_e.txt ticeval2000.txt | tr '\t' '|' > ticeval2000_h.txt
 head -n 1 ticeval2000_h.txt > aux1e.txt
 
 # Ordenamos el archivo de evaluación por la primera columna, especificando que lo haga numéricamente
-cat ticeval2000_h.txt | header -d | sort -t '|' -k 1n > aux2e.txt
+cat ticeval2000_h.txt | header -d | sort -t '|' -k 1n > auxL0e.txt
 
 #Le pegamos los nombres de la columna 1 y guardamos
-cat aux1e.txt aux2e.txt > aux_eval.txt	 
-cat aux_eval.txt | more
+cat aux1e.txt auxL0e.txt > aux_evalL0.txt	 
+cat aux_evalL0.txt | more
 
 # Los unimos
 
-join aux_eval.txt aux_cat.txt --header -1 1 -2 1 -t '|' -a 1 > aux_ticevalL0.txt
+join aux_evalL0.txt aux_catL0.txt --header -1 1 -2 1 -t '|' -a 1 > aux_ticevalL0.txt
 cat aux_ticevalL0.txt| more
 
 #Guardamos los nombres de las columnas incluyendo la nueva
@@ -252,21 +248,19 @@ head -n 1 aux_ticevalL0.txt > auxe10.txt
 
 # Hacer lo mismo para las otras variables categóricas
 # Catálogo L1
-# Extraer las líneas 252 al 262
-
 
 # Ordenamos el archivo de evaluación (que ya contiene la columna del catálogo L0) por la cuarta columna, 
 #especificando que lo haga numéricamente
-cat aux_ticevalL0.txt | header -d | sort -t '|' -k 4n > aux2eval.txt
+cat aux_ticevalL0.txt | header -d | sort -t '|' -k 4n > auxL1e.txt
 
 #Le pegamos los nombres de las columnas y guardamos
-cat auxe10.txt aux2eval.txt > aux_evalb.txt
-cat aux_evalb.txt | more
+cat auxe10.txt auxL1e.txt > aux_evalL1.txt
+cat aux_evalL1.txt | more
 
 
 # Los unimos
 
-join aux_evalb.txt aux_cat1.txt --header -1 4 -2 1 -t '|' -a 1 > aux_ticevalL1.txt
+join aux_evalL1.txt aux_catL1.txt --header -1 4 -2 1 -t '|' -a 1 > aux_ticevalL1.txt
 cat aux_ticevalL1.txt| more
 
 #Guardamos los nombres de las columnas incluyendo la nueva
@@ -277,10 +271,10 @@ head -n 1 aux_ticevalL1.txt > auxe11.txt
 
 # Ordenamos el archivo de evaluación (que ya contiene las columnas de los catálogos L0 y L1) por la quinta columna, 
 # especificando que lo haga numéricamente
-cat aux_ticevalL1.txt | header -d | sort -t '|' -k 5n > auxeL2.txt
+cat aux_ticevalL1.txt | header -d | sort -t '|' -k 5n > auxL2e.txt
 
 #Le pegamos los nombres de las columnas y guardamos
-cat auxe11.txt auxeL2.txt > aux_evalL2.txt
+cat auxe11.txt auxL2e.txt > aux_evalL2.txt
 cat aux_evalL2.txt | more
 
 # No ordenamos el archivo con el catálogo porque ya está ordenado
@@ -297,10 +291,10 @@ head -n 1 aux_ticevalL2.txt > auxe12.txt
 
 # Ordenamos el archivo de evaluación (que ya contiene las columnas de los catálogos L0, L1 y L2) por la sexta columna, 
 # especificando que lo haga numéricamente
-cat aux_ticevalL2.txt | header -d | sort -t '|' -k 6n > auxeL3.txt
+cat aux_ticevalL2.txt | header -d | sort -t '|' -k 6n > auxL3e.txt
 
 #Le pegamos los nombres de las columnas y guardamos
-cat auxe12.txt auxeL3.txt > aux_evalL3.txt
+cat auxe12.txt auxL3e.txt > aux_evalL3.txt
 cat aux_evalL3.txt | more
 
 # No ordenamos el archivo con el catálogo porque ya está ordenado
@@ -317,10 +311,10 @@ head -n 1 aux_ticevalL3.txt > auxe13.txt
 
 # Ordenamos el archivo de evaluación (que ya contiene las columnas de los catálogos L0, L1, L2, L3) por la columna 44, 
 # especificando que lo haga numéricamente
-cat aux_ticevalL3.txt | header -d | sort -t '|' -k 44n > auxeL4.txt
+cat aux_ticevalL3.txt | header -d | sort -t '|' -k 44n > auxL4e.txt
 
 #Le pegamos los nombres de las columnas y guardamos
-cat auxe13.txt auxeL4.txt > aux_evalL4.txt
+cat auxe13.txt auxL4e.txt > aux_evalL4.txt
 cat aux_evalL4.txt | more
 
 # No ordenamos el archivo con el catálogo porque ya está ordenado
@@ -332,4 +326,4 @@ cat aux_ticevalL4.txt| more
 
 # Haz un guión que obtenga cual es esta variable y crea un nuevo archivo con esta columna.
 
-cut -d'|' -f86-86 aux_data.txt > aux_caravan.txt
+cut -d'|' -f86-86 aux_dataL0.txt > aux_caravan.txt

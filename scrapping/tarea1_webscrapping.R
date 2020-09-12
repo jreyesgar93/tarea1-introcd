@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 library(rvest)
 library(magritrr )
 
@@ -185,7 +185,3 @@ ammount<-weather_cdmx %>%
 Juntar todas las variables en una sola base de datos y guardar resultado en csv
 
 '''     
-<<<<<<< HEAD
->>>>>>> 34a57b2de17c2e8f4312d697a9907cc85f89458a
-=======
->>>>>>> ac87d12e294fda1fb1fcf3b7eba23396904c277a

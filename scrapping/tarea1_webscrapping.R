@@ -41,28 +41,26 @@ weather_scrapping<-function(html_name,td_pos){
 }
 
 
+time_scrapping<-function(html_name,th_pos){
+  
+  # Esta función es igual a la anterior pero para obtener el tiempo
+  
+  vec<-c()
+  for (i in c(1:24)){
+    value<-html_name %>%
+      html_node(xpath=paste('//*[@id="wt-hbh"]/tbody/tr[',i,']/th[',th_pos,']',sep="")) %>%
+      html_text() %>%
+      as.character()
+    vec<-c(vec,value)
+  }
+  return(vec)
+}
 
+time<-time_scrapping(weather_cdmx,1)
 
+temp<-weather_scrapping(weather_cdmx,2)
 
-time<-weather_cdmx %>%
-        html_node() %>%
-        html_text() %>%
-        as.numeric()
-
-
-temp<-weather_cdmx %>%
-        html_node() %>%
-        html_text() %>%
-        as.numeric()
-
-
-
-
-
-weather<-weather_cdmx %>%
-            html_node() %>%
-            html_text() %>%
-            as.character()
+weather<-weather_scrapping(weather_cdmx,3)
 
 
 feels_like<-weather_scrapping(weather_cdmx,4)

@@ -1,0 +1,12 @@
+Sí es posible ejecutar	un guión bash en con docker run.
+Es necesario crear una imagen que contenga las instrucciones del guión en el docker file.
+
+El docker file puede editarse e incluir el comando 
+RUN ....
+
+
+y las instrucciones subescuentes para ejecutar el guión deseado. 
+
+De esta forma, al crear el contenedor con la imagen deseada por medio de docker run, se ejecutará el guión especificado.
+
+

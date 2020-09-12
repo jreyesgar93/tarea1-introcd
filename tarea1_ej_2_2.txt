@@ -5,7 +5,7 @@ Usando el comando
 od -xc 
 
 Podemos observar la codificación de cada caracter y determinar su tipo de encoding.
-En este caso, el archivo estaba generado con la codificación Latin1 y para calmbiarlo a encoding UTF-8
+En este caso, el archivo estaba generado con la codificación Latin1 y para cambiarlo a encoding UTF-8
 se utiliza el comando 
 
 dos2unix 

@@ -663,5 +663,9 @@ cat aux_ticevalL4.txt| more
 
 # Haz un guión que obtenga cual es esta variable y crea un nuevo archivo con esta columna.
 
+<<<<<<< HEAD
 cut -d'|' -f86-86 aux_dataL0.txt > aux_caravan.txt
 >>>>>>> 34a57b2de17c2e8f4312d697a9907cc85f89458a
+=======
+cut -d'|' -f86-86 aux_dataL0.txt > aux_caravan.txt
+>>>>>>> ac87d12e294fda1fb1fcf3b7eba23396904c277a

@@ -3,7 +3,8 @@ library(dplyr)
 library(tidyr)
 library(purrr)
 
-datos_train<-read_delim("C:/Users/JoséFrancisco/Documents/Luz/ITAM/MAD/Tareas/tic/aux_ticdataL4.txt",
+path<-getwd()
+datos_train<-read_delim(paste(path,"/tic/aux_ticdataL4.txt",sep=""),
                        delim="|",col_names=TRUE)
 
 resumen_train<-datos_train%>%
@@ -15,7 +16,7 @@ MAX=apply(resumen_trainT[,2:5822],1,FUN=max)
 MEDIA=apply(resumen_trainT[,2:5822],1,FUN=mean)               
 SD=apply(resumen_trainT[,2:5822],1,FUN=sd)
 tabla_train<-bind_cols(resumen_trainT[,0],MIN,MAX,MEDIA,SD)
-colnames(tabla_train)=c("Mínimo","Máximo","Media","Desv.Est")
+colnames(tabla_train)=c("M?nimo","M?ximo","Media","Desv.Est")
 
 res_train_cat<-datos_train%>%
   select(MOSTYPECAT:PWAPARTCAT)
@@ -40,7 +41,7 @@ f_PWAPARTCAT<-res_train_cat%>%
   group_by(PWAPARTCAT)%>%
   summarise(frecuencia=n())
 
-datos_eval<-read_delim("C:/Users/JoséFrancisco/Documents/Luz/ITAM/MAD/Tareas/tic/aux_ticevalL4.txt",
+datos_eval<-read_delim(paste(path,"tic/aux_ticevalL4.txt",sep=""),
                        delim="|",col_names=TRUE)
 
 resumen_eval<-datos_eval%>%
@@ -52,7 +53,7 @@ MAX=apply(resumen_evalT[,2:4000],1,FUN=max)
 MEDIA=apply(resumen_evalT[,2:4000],1,FUN=mean)               
 SD=apply(resumen_evalT[,2:4000],1,FUN=sd)
 tabla_eval<-bind_cols(resumen_evalT[,0],MIN,MAX,MEDIA,SD)
-colnames(tabla_eval)=c("Mínimo","Máximo","Media","Desv.Est")
+colnames(tabla_eval)=c("M?nimo","M?ximo","Media","Desv.Est")
 
 res_eval_cat<-datos_eval%>%
   select(MOSTYPECAT:PWAPARTCAT)

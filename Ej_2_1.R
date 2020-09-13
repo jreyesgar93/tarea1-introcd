@@ -41,7 +41,7 @@ f_PWAPARTCAT<-res_train_cat%>%
   group_by(PWAPARTCAT)%>%
   summarise(frecuencia=n())
 
-datos_eval<-read_delim(paste(path,"tic/aux_ticevalL4.txt",sep=""),
+datos_eval<-read_delim(paste(path,"/tic/aux_ticevalL4.txt",sep=""),
                        delim="|",col_names=TRUE)
 
 resumen_eval<-datos_eval%>%

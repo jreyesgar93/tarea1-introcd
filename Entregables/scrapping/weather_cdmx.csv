@@ -1,0 +1,25 @@
+"","time","temp","weather","chance_rain"
+"1","6:00 pmSat, Sep 12","71 °F","Partly sunny.",0.06
+"2","7:00 pm","68 °F","Broken clouds.",0.08
+"3","8:00 pm","66 °F","Broken clouds.",0.08
+"4","9:00 pm","64 °F","Broken clouds.",0.08
+"5","10:00 pm","63 °F","Mostly cloudy.",0.09
+"6","11:00 pm","62 °F","A few showers. Mostly cloudy.",0.29
+"7","12:00 amSun, Sep 13","61 °F","A few showers. Mostly cloudy.",0.39
+"8","1:00 am","60 °F","A few showers. Mostly cloudy.",0.5
+"9","2:00 am","60 °F","A few showers. Mostly cloudy.",0.5
+"10","3:00 am","59 °F","A few showers. Mostly cloudy.",0.5
+"11","4:00 am","58 °F","A few showers. Mostly cloudy.",0.5
+"12","5:00 am","58 °F","A few showers. Mostly cloudy.",0.47
+"13","6:00 am","57 °F","A few showers. Mostly cloudy.",0.43
+"14","7:00 am","56 °F","A few showers. More clouds than sun.",0.4
+"15","8:00 am","56 °F","More clouds than sun.",0.09
+"16","9:00 am","57 °F","More clouds than sun.",0.09
+"17","10:00 am","60 °F","More clouds than sun.",0.09
+"18","11:00 am","63 °F","More sun than clouds.",0.06
+"19","12:00 pm","66 °F","More sun than clouds.",0.09
+"20","1:00 pm","68 °F","Broken clouds.",0.04
+"21","2:00 pm","70 °F","Broken clouds.",0.03
+"22","3:00 pm","72 °F","Broken clouds.",0.03
+"23","4:00 pm","73 °F","Broken clouds.",0.02
+"24","5:00 pm","72 °F","Broken clouds.",0.03
